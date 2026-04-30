@@ -30,6 +30,16 @@ app.post('/api/customers', async (req, res) => {
     }
 });
 
+app.get('/api/customers', async (req, res) => {
+    try {
+        const customers = await Customer.find().sort({ createdAt: -1 }); // Fetch newest first
+        res.status(200).json(customers);
+    } catch (error) {
+        console.error('Error al obtener usuarios:', error);
+        res.status(500).json({ error: 'Hubo un error al obtener los datos' });
+    }
+});
+
 // Iniciar servidor solo si no estamos en entorno de producción Serverless
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {

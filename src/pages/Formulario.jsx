@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Campo_input_form from '../components/Campo_input_form'
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Formulario() {
+    const navigate = useNavigate();
 
     const [formdata, setFormdata] = useState({
         name: "",
@@ -55,6 +57,7 @@ function Formulario() {
                     <Campo_input_form label="Email" type="email" id="email" name="email" valor={formdata.email} onChange={handleChange} />
                     <Campo_input_form label="Password" type="password" id="password" name="password" valor={formdata.password} onChange={handleChange} />
                     <button type="submit">Enviar</button>
+                    <a href="/table" style={{ marginLeft: '10px' }}>Ver Clientes</a>
                 </form>
             </div>
         </>
