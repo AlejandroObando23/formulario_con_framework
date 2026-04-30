@@ -6,8 +6,8 @@ import Campo_input_form from '../components/Campo_input_form'
 function Formulario() {
 
     const [formdata, setFormdata] = useState({
-        nombre: "",
-        apellido: "",
+        name: "",
+        lastname: "",
         email: "",
         password: ""
     });
@@ -35,7 +35,7 @@ function Formulario() {
 
             if (respuesta.ok) {
                 alert("¡Datos guardados exitosamente en MongoDB!");
-                setFormdata({ nombre: "", apellido: "", email: "", password: "" }); // Limpiar formulario
+                setFormdata({ name: "", lastname: "", email: "", password: "" }); // Limpiar formulario
             } else {
                 alert("Hubo un error al guardar los datos.");
             }
@@ -50,8 +50,8 @@ function Formulario() {
             <div className="formulario">
                 <h1>Formulario</h1>
                 <form onSubmit={handleSubmit}>
-                    <Campo_input_form label="Nombre" type="text" id="nombre" name="nombre" valor={formdata.nombre} onChange={handleChange} />
-                    <Campo_input_form label="Apellido" type="text" id="apellido" name="apellido" valor={formdata.apellido} onChange={handleChange} />
+                    <Campo_input_form label="Nombre" type="text" id="name" name="name" valor={formdata.name} onChange={handleChange} />
+                    <Campo_input_form label="Apellido" type="text" id="lastname" name="lastname" valor={formdata.lastname} onChange={handleChange} />
                     <Campo_input_form label="Email" type="email" id="email" name="email" valor={formdata.email} onChange={handleChange} />
                     <Campo_input_form label="Password" type="password" id="password" name="password" valor={formdata.password} onChange={handleChange} />
                     <button type="submit">Enviar</button>
