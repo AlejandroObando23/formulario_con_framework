@@ -30,7 +30,12 @@ app.post('/api/customers', async (req, res) => {
     }
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
-});
+// Iniciar servidor solo si no estamos en entorno de producción Serverless
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+    });
+}
+
+// Exportamos app para que Vercel la pueda usar como Serverless Function
+export default app;

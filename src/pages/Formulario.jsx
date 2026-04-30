@@ -25,7 +25,7 @@ function Formulario() {
         e.preventDefault();
 
         try {
-            const respuesta = await fetch('http://localhost:5000/api/customers', {
+            const respuesta = await fetch('/api/customers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
