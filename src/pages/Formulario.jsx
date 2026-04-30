@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Campo_input_form from '../componenets/Campo_input_form'
+import Campo_input_form from '../components/Campo_input_form'
 
 
 
