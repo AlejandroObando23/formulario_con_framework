@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function TableUser() {
     const [users, setUsers] = useState([]);
     const [editingId, setEditingId] = useState(null);
-    const [editForm, setEditForm] = useState({ name: '', email: '' });
+    const [editForm, setEditForm] = useState({ name: '', lastname: '', email: '' });
 
     const getCustomers = async () => {
         try {
@@ -34,12 +34,12 @@ function TableUser() {
 
     const startEdit = (user) => {
         setEditingId(user._id);
-        setEditForm({ name: user.name, email: user.email });
+        setEditForm({ name: user.name, lastname: user.lastname, email: user.email });
     };
 
     const cancelEdit = () => {
         setEditingId(null);
-        setEditForm({ name: '', email: '' });
+        setEditForm({ name: '', lastname: '', email: '' });
     };
 
     const handleEditChange = (e) => {
@@ -80,6 +80,7 @@ function TableUser() {
                     <thead>
                         <tr>
                             <th>Nombre</th>
+                            <th>Apellido</th>
                             <th>Email</th>
                             <th>Acciones</th>
                         </tr>
@@ -97,6 +98,18 @@ function TableUser() {
                                         />
                                     ) : (
                                         user.name
+                                    )}
+                                </td>
+                                <td>
+                                    {editingId === user._id ? (
+                                        <input
+                                            type="text"
+                                            name="lastname"
+                                            value={editForm.lastname}
+                                            onChange={handleEditChange}
+                                        />
+                                    ) : (
+                                        user.lastname
                                     )}
                                 </td>
                                 <td>
