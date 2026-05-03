@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './TableUser.css';
 
 function TableUser() {
     const [users, setUsers] = useState([]);
@@ -73,10 +74,15 @@ function TableUser() {
     }, []);
 
     return (
-        <>
-            <div>
+        <div className="table-container">
+            <div className="table-header">
                 <h1>Clientes</h1>
-                <table style={{ width: '100%', marginBottom: '20px' }}>
+                <Link to="/" className="back-btn">
+                    Volver al Formulario
+                </Link>
+            </div>
+            <div className="table-wrapper">
+                <table className="styled-table">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -127,13 +133,13 @@ function TableUser() {
                                 <td>
                                     {editingId === user._id ? (
                                         <>
-                                            <button onClick={() => saveEdit(user._id)} style={{ marginRight: '10px', backgroundColor: '#28a745', color: 'white', padding: '5px 10px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Guardar</button>
-                                            <button onClick={cancelEdit} style={{ backgroundColor: '#6c757d', color: 'white', padding: '5px 10px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Cancelar</button>
+                                            <button onClick={() => saveEdit(user._id)} className="action-btn save">Guardar</button>
+                                            <button onClick={cancelEdit} className="action-btn cancel">Cancelar</button>
                                         </>
                                     ) : (
                                         <>
-                                            <button onClick={() => startEdit(user)} style={{ marginRight: '10px', backgroundColor: '#007bff', color: 'white', padding: '5px 10px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Editar</button>
-                                            <button onClick={() => deleteCustomer(user._id)} style={{ backgroundColor: '#dc3545', color: 'white', padding: '5px 10px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Eliminar</button>
+                                            <button onClick={() => startEdit(user)} className="action-btn edit">Editar</button>
+                                            <button onClick={() => deleteCustomer(user._id)} className="action-btn delete">Eliminar</button>
                                         </>
                                     )}
                                 </td>
@@ -141,12 +147,8 @@ function TableUser() {
                         ))}
                     </tbody>
                 </table>
-                <br />
-                <Link to="/" style={{ padding: '10px 15px', backgroundColor: '#333', color: 'white', textDecoration: 'none', borderRadius: '5px' }}>
-                    Volver al Formulario
-                </Link>
             </div>
-        </>
+        </div>
     )
 }
 export default TableUser;
