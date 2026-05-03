@@ -40,6 +40,34 @@ app.get('/api/customers', async (req, res) => {
     }
 });
 
+app.put('/api/customers/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedCustomer = await Customer.findByIdAndUpdate(id, req.body, { new: true });
+        if (!updatedCustomer) {
+            return res.status(404).json({ error: 'Cliente no encontrado' });
+        }
+        res.status(200).json({ mensaje: 'Cliente actualizado', customer: updatedCustomer });
+    } catch (error) {
+        console.error('Error al actualizar usuario:', error);
+        res.status(500).json({ error: 'Hubo un error al actualizar los datos' });
+    }
+});
+
+app.delete('/api/customers/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedCustomer = await Customer.findByIdAndDelete(id);
+        if (!deletedCustomer) {
+            return res.status(404).json({ error: 'Cliente no encontrado' });
+        }
+        res.status(200).json({ mensaje: 'Cliente eliminado correctamente' });
+    } catch (error) {
+        console.error('Error al eliminar usuario:', error);
+        res.status(500).json({ error: 'Hubo un error al eliminar los datos' });
+    }
+});
+
 // Iniciar servidor solo si no estamos en entorno de producción Serverless
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
